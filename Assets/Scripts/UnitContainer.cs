@@ -16,16 +16,19 @@ public class UnitContainer : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other);
         if (gameManager.draggingUnit != null && gameManager.draggingUnit.GetComponent<UnitDrag>().GetComponent<BoxCollider2D>() == other && isFull == false)
         {
+            Debug.Log(other);
             gameManager.currentContainer = this.gameObject;
             highlight.enabled = true;
         }
     }
     public void OnTriggerExit2D(Collider2D other)
     {
-        gameManager.currentContainer = null;
-        highlight.enabled = false;
+        if (gameManager.draggingUnit != null && gameManager.draggingUnit.GetComponent<UnitDrag>().GetComponent<BoxCollider2D>() == other)
+        {
+            gameManager.currentContainer = null;
+            highlight.enabled = false;
+        }
     }
 }

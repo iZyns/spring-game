@@ -3427,7 +3427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -960.0001, y: -390}
+  m_AnchoredPosition: {x: -960, y: -400}
   m_SizeDelta: {x: 192, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2044445793
@@ -3772,6 +3772,10 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 86342028}
+    - target: {fileID: 4292910242728131667, guid: 48f84222506b7564989c824d72ef2220, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2a075c2bbcfa9484d801fba567ce4c96, type: 3}
     - target: {fileID: 6142482809667619082, guid: 48f84222506b7564989c824d72ef2220, type: 3}
       propertyPath: m_Name
       value: UnitCard

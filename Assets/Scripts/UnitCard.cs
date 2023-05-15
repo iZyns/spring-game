@@ -32,7 +32,7 @@ public class UnitCard : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
     public void OnPointerUp(PointerEventData eventData)
     {
         gameManager.PlaceObject();
-        gameManager.draggingUnit = null;
         Destroy(unitDragInstance);
+        gameManager.draggingUnit = null;
     }
 }
