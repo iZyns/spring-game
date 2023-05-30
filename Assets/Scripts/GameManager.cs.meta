@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8d6305ef5be615c4fa9808b2f96146ff
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - draggingUnit: {instanceID: 0}
+  - currentContainer: {instanceID: 0}
+  - gameUnit: {instanceID: 0}
+  - player: {fileID: 7877366636272366292, guid: 43ada25795aa24624ad21a82c11238cc, type: 3}
+  - fire: {fileID: 109720297962335392, guid: 35bd81ce026244cafa4e68211eec80a7, type: 3}
+  - currencyText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
