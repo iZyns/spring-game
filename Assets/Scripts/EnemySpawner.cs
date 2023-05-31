@@ -12,18 +12,29 @@ public class EnemySpawner : MonoBehaviour
 
     private float spawnTimer = 0f;
 
+    private bool startRound;
+
     private void Update()
     {
         // Update the spawn timer
         spawnTimer += Time.deltaTime;
 
+        if (startRound)
+        {
+            if (spawnTimer + Time.deltaTime == 5f)
+            {
+                SpawnEnemy();
+                spawnTimer = 0f;
+                startRound = false;
+            }
+        }
+
         if (canSpawn)
         {
-            // Check if it's time to spawn a new enemy
             if (spawnTimer >= spawnInterval)
             {
                 SpawnEnemy();
-                spawnTimer = 0f; // Reset the timer
+                spawnTimer = 0f;
             }
         }
     }
@@ -31,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
     public void StartSpawning()
     {
         canSpawn = true;
+        startRound = true;
     }
 
     public void StopSpawning()
@@ -51,4 +63,6 @@ public class EnemySpawner : MonoBehaviour
             enemyMovement.enemyWaypoint = enemyWaypoint.transform;
         }
     }
+
+
 }

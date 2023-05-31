@@ -471,6 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f185add136de746967bd1b55da052f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currencyPrefab: {fileID: 4295500849200242595, guid: dec84024c03e62b41af181e9fd068bb7, type: 3}
   movementSpeed: 15
   enemyWaypoint: {fileID: 0}
   gameManager: {fileID: 0}
@@ -478,6 +479,8 @@ MonoBehaviour:
   rewardAmount: 10
   healthbar: {fileID: 1946489265}
   axeHitEffect: {fileID: -8786107344303574114}
+  health: 2.5
+  max: 3
 --- !u!50 &-6511993669486997792
 Rigidbody2D:
   serializedVersion: 4

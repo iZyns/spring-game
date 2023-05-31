@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UnitCard : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -10,11 +11,11 @@ public class UnitCard : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
     public Canvas canvas;
     private GameObject unitDragInstance;
     public GameManager gameManager;
+    public Image unitSprite;
 
     private void Start()
     {
         gameManager = GameManager.instance;
-        Debug.Log("gameManager instance assignment.");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -26,12 +27,12 @@ public class UnitCard : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoint
         unitDragInstance = Instantiate(unitDrag, canvas.transform);
         unitDragInstance.transform.position = Input.mousePosition;
         unitDragInstance.GetComponent<UnitDrag>().card = this;
+        unitDragInstance.GetComponent<Image>().sprite = unitSprite.sprite;
         gameManager.draggingUnit = unitDragInstance;
-        Debug.Log("draggingUnit assignment.");
     }
     public void OnPointerUp(PointerEventData eventData)
     {
-        gameManager.PlaceObject();
+        gameManager.PlaceObject(unitGame.GetComponent<UnitGame>().price);
         Destroy(unitDragInstance);
         gameManager.draggingUnit = null;
     }

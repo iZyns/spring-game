@@ -471,13 +471,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f185add136de746967bd1b55da052f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 50
+  currencyPrefab: {fileID: 4295500849200242595, guid: dec84024c03e62b41af181e9fd068bb7, type: 3}
+  movementSpeed: 30
   enemyWaypoint: {fileID: 0}
   gameManager: {fileID: 0}
   roundManager: {fileID: 0}
   rewardAmount: 5
   healthbar: {fileID: 520634180}
   axeHitEffect: {fileID: 8434025349699817522}
+  health: 0.6
+  max: 1
 --- !u!60 &-689480731598626488
 PolygonCollider2D:
   m_ObjectHideFlags: 0

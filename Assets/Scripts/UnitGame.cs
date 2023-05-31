@@ -10,13 +10,15 @@ public class UnitGame : MonoBehaviour, IPointerDownHandler
     public GameObject fireShootingObj;
     public GameObject throwAxeObj;
     public GameObject launchArrow;
+    public AudioSource shout;
 
-    private int randomNumber;
+    public int projectile;
+    public int price;
 
     // firing time
     public float timer = 0f;
     public float interval = 1f;
-
+    private UnitContainer unitContainer;
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -27,10 +29,9 @@ public class UnitGame : MonoBehaviour, IPointerDownHandler
 
     public void Start()
     {
-
+        unitContainer = GetComponentInParent<UnitContainer>();
         manageGame = GameManager.instance;
-
-        randomNumber = Random.Range(1, 4);
+        shout.Play();
     }
 
     public void Update()
@@ -41,20 +42,28 @@ public class UnitGame : MonoBehaviour, IPointerDownHandler
         if (timer >= interval)
         {
 
-            if (randomNumber == 1)
+            if (projectile == 1)
             {
                 Instantiate(fireShootingObj, transform);
             }
 
-            if (randomNumber == 2)
+            if (projectile == 2)
             {
                 Instantiate(throwAxeObj, transform);
             }
-            if (randomNumber == 3)
+            if (projectile == 3)
             {
                 Instantiate(launchArrow, transform);
             }
             timer = 0;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            unitContainer.isFull = false;
         }
     }
 }

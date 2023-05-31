@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    public GameObject currencyPrefab;
     private string targetTag = "EnemyPoint"; // The tag of the target GameObject
     public float movementSpeed = 5f; // The speed at which the enemy moves towards the target
     public Transform enemyWaypoint;
@@ -13,20 +14,24 @@ public class EnemyBehavior : MonoBehaviour
     public RoundManager roundManager;
     public int rewardAmount = 10;
 
+    private GameObject coinContainer;
+
     [SerializeField] public HealthBar healthbar;
 
-    //Soundeffect
+    // Sound effect
     [SerializeField] public AudioSource axeHitEffect;
-    // health field
-    float health = 1f;
-    float max = 1f;
 
-    float fireBallDamage = 0.50f;
-    float axeDamage = 0.30f;
-    float arrowDamage = 0.5f;
+    // Health field
+    public float health = 1f;
+    public float max = 1f;
+
+    float fireBallDamage = 0.55f;
+    float axeDamage = 0.15f;
+    float arrowDamage = 0.30f;
 
     private void Start()
     {
+        coinContainer = GameObject.Find("Coin Container");
         gameManager = GameManager.instance;
         target = GameObject.FindGameObjectWithTag(targetTag);
         healthbar = GetComponentInChildren<HealthBar>();
@@ -53,11 +58,11 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         if (other.CompareTag(targetTag))
         {
             hasReachedTarget = true;
             Destroy(gameObject);
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             for (int i = 0; i < enemies.Length; i++)
             {
                 Destroy(enemies[i]);
@@ -65,33 +70,43 @@ public class EnemyBehavior : MonoBehaviour
             roundManager.EndRound();
             gameManager.RoundOverLose();
         }
-        if (other.tag == "fireBall")
+        else if (other.tag == "fireBall")
         {
             axeHitEffect.Play();
-
             takeDamage(fireBallDamage);
             if (health <= 0)
             {
+                spawnCoin();
                 Destroy(gameObject);
             }
         }
-
-        if (other.tag == "Axe")
+        else if (other.tag == "Axe")
         {
             axeHitEffect.Play();
             takeDamage(axeDamage);
             if (health <= 0)
             {
+                spawnCoin();
                 Destroy(gameObject);
             }
         }
-
-        if (other.tag == "Arrow")
+        else if (other.tag == "Arrow")
         {
             axeHitEffect.Play();
             takeDamage(arrowDamage);
             if (health <= 0)
             {
+                spawnCoin();
+                Destroy(gameObject);
+            }
+        }
+        else if (other.tag == "player")
+        {
+            takeDamage(0.50f);
+            Destroy(other.gameObject);
+            if (health <= 0)
+            {
+                spawnCoin();
                 Destroy(gameObject);
             }
         }
@@ -105,6 +120,16 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnDestroy()
     {
-        gameManager.UpdateCurrency(rewardAmount);
+
+
+    }
+
+    private void spawnCoin()
+    {
+        if (currencyPrefab != null)
+        {
+            GameObject coin = Instantiate(currencyPrefab, transform.position, Quaternion.identity);
+            coin.transform.SetParent(coinContainer.transform);
+        }
     }
 }

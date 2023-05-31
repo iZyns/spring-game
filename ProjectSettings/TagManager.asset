@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - Axe
   - Arrow
+  - Currency
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Coin
+    uniqueID: 907040227
     locked: 0

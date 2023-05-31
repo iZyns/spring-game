@@ -91,3 +91,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitDrag: {fileID: 1740188259660346947, guid: 2d18e2e444656dc4e803090e8a505c1a, type: 3}
   unitGame: {fileID: 1740188259660346947, guid: 457683ca485028143905ded2a1d37123, type: 3}
+  canvas: {fileID: 0}
+  gameManager: {fileID: 0}
+  unitSprite: {fileID: 4292910242728131667}

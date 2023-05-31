@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc750c6875e74df5b2a37100fd9d7e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowSpeed: 150
+  arrowSpeed: 115
   hitFire: {fileID: -8790467229648238305}
 --- !u!82 &-8790467229648238305
 AudioSource:

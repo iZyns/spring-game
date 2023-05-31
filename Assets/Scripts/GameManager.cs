@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject draggingUnit;
     public GameObject currentContainer;
     public GameObject gameUnit;
+    private GameObject unitGame;
 
 
     public TMP_Text roundOverText;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public int currentCurrency = 0;
     public int startingCurrency = 100;
     public Text currencyText = null;
+    public AudioSource coincollect;
 
     public static GameManager instance;
 
@@ -41,22 +43,25 @@ public class GameManager : MonoBehaviour
         currencyText.text = "$ " + currentCurrency.ToString();
     }
 
-    public void PlaceObject()
+    public void PlaceObject(int price)
     {
-        if (draggingUnit != null && currentContainer != null && currentCurrency > 0 && currentCurrency - 20 >= 0)
+        if (draggingUnit != null && currentContainer != null && currentCurrency > 0 && currentCurrency - price >= 0)
         {
-            Instantiate(draggingUnit.GetComponent<UnitDrag>().card.unitGame, currentContainer.transform);
+            unitGame = Instantiate(draggingUnit.GetComponent<UnitDrag>().card.unitGame, currentContainer.transform);
             //unitPosition = draggingUnit.transform.position;
             currentContainer.GetComponent<UnitContainer>().isFull = true;
             // Debug.Log("Orignal unit position: " + currentContainer.transform.position);
             // Debug.Log("draggin unit position: " + draggingUnit.transform.position);
-            UpdateCurrency(-20);
+            UpdateCurrency(-price);
         }
     }
 
     public void UpdateCurrency(int amount)
     {
         currentCurrency += amount;
+        if (amount > 0) {
+            coincollect.Play();
+        }
         if (currencyText != null)
         {
             currencyText.text = "$ " + currentCurrency.ToString();
@@ -81,6 +86,12 @@ public class GameManager : MonoBehaviour
         roundOverText.gameObject.SetActive(true);
         roundOverText.text = "Round Over!";
         StartCoroutine(LoadMainMenuAfterDelay(3f));
+    }
+
+    private void removeCoins()
+    {
+        CoinController coinController = FindObjectOfType<CoinController>();
+        coinController.FinishGame();
     }
 
     private IEnumerator LoadMainMenuAfterDelay(float delaySeconds)

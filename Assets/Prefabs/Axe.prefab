@@ -64,7 +64,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4491beb3dbb674e01b1a59a872270038, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axeSpeed: 100
+  axeSpeed: 125
   axeThrowEffect: {fileID: -3818581352517034653}
 --- !u!50 &3406224715598872767
 Rigidbody2D:

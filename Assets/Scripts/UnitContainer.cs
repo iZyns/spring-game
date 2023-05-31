@@ -18,7 +18,6 @@ public class UnitContainer : MonoBehaviour
     {
         if (gameManager.draggingUnit != null && gameManager.draggingUnit.GetComponent<UnitDrag>().GetComponent<BoxCollider2D>() == other && isFull == false)
         {
-            Debug.Log(other);
             gameManager.currentContainer = this.gameObject;
             highlight.enabled = true;
         }
